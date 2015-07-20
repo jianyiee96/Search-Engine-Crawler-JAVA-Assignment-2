@@ -10,14 +10,21 @@ package assignment2final;
  * @author JianYiee
  */
 public class Assignment2Final {
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String url = "";
-        System.out.println(PageRead.readPage(url));
+       String query = "msi";
+       query = query.replaceAll(" ", "%20");
+       newSearch searcher = new newSearch(query);
+       newSearch searcher2 = new newSearch(query);
+       searcher.initSearch(query,"bing");
+       searcher2.initSearch(query,"yahoo");
+       searcher.start();
+       searcher2.start();
+       
     }
     
 }
