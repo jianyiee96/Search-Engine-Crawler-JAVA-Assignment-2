@@ -62,6 +62,7 @@ public class newSearch extends Thread {
             }
             
             
+            
         for (String s : results) {
                for (String s2 : subquery) {
             if (s.toLowerCase().contains(s2.toLowerCase())) {
