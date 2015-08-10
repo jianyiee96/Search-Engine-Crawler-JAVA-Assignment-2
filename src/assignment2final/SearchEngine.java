@@ -31,7 +31,6 @@ public class SearchEngine extends Thread {
     @Override
     public void run() {
            query = query.replace(" ", "%20");
-           System.out.println("Searching "+engine+query);
            StringBuilder source = PageRead.readPage(engine+query);
            
            
@@ -47,30 +46,22 @@ public class SearchEngine extends Thread {
                link = link.replace("<strong>","");
                link = link.replace("</strong>","");
                link = link.replace("</cite>","");
-               System.out.println("Link found: "+link);
                
                if (!antiDuplicate.containsKey(link.toLowerCase())){
                     antiDuplicate.put(link.toLowerCase(), antiDuplicate.size());
                     linkedUrl.add("http://"+link);
-               } else {
-                   System.out.println("Duplicate found, skipping...");
-               }
+               } 
            } else if(matcher2.find()) {
                String link = matcher2.group();
                link = link.replace("web-result-url\">", "");
                link = link.replace("</p>", "");
-               System.out.println("Link found: "+link);
                
                if (!antiDuplicate.containsKey(link.toLowerCase())){
                     antiDuplicate.put(link.toLowerCase(), antiDuplicate.size());
                     linkedUrl.add("http://"+link);
-               } else {
-                   System.out.println("Duplicate found, skipping...");
-               }
+               } 
                
-           } else {
-               System.out.println("No matches for "+engine+query);
-           }
+           } 
                  
            
     }

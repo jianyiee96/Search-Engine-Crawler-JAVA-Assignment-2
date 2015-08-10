@@ -8,8 +8,6 @@ package assignment2final;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -52,7 +50,6 @@ public class MainJFrame extends javax.swing.JFrame {
         getSource = new javax.swing.JButton();
         threadCountCombo = new javax.swing.JComboBox();
         crawlCountCombo = new javax.swing.JComboBox();
-        checkCrawl = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
@@ -75,7 +72,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("~ Web Crawler~");
+        jLabel1.setText("Web Crawler v1.0");
 
         clearButton.setText("Clear all");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,13 +102,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         crawlCountCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" }));
 
-        checkCrawl.setText("check crawl");
-        checkCrawl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkCrawlActionPerformed(evt);
-            }
-        });
-
         refreshButton.setText("Refresh");
         refreshButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,20 +115,21 @@ public class MainJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(queryField)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(crawlButton))
-                            .addComponent(urlList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(getSource, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                            .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(21, 21, 21)
+                        .addComponent(queryField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(crawlButton))
+                    .addComponent(urlList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(getSource, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                    .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
@@ -146,13 +137,8 @@ public class MainJFrame extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(crawlCountCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(checkCrawl)
-                                .addGap(0, 207, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(484, 484, 484)))
+                                .addComponent(crawlCountCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 312, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,8 +152,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(threadCountCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(crawlCountCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkCrawl))
+                    .addComponent(crawlCountCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +175,6 @@ public class MainJFrame extends javax.swing.JFrame {
         String query = queryField.getText();
 
         if (!query.equals("")) {
-            System.out.println("Searching for query: " + query);
             initSearch(query);
         }
 
@@ -216,14 +200,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_getSourceActionPerformed
 
-    private void checkCrawlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkCrawlActionPerformed
-        System.out.println("Query: " + queryField.getText());
-        System.out.println("Thread count: " + threadCountCombo.getSelectedItem());
-        System.out.println("Number of crawls: " + crawlCountCombo.getSelectedItem());
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_checkCrawlActionPerformed
-
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
         urlList.removeAll();
@@ -233,7 +209,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void initSearch(String query) {
+           
+        queryField.setText("");
+        urlList.removeAll();
+        displayText.setText("");
+        urlProcessed.clear();
 
+        
         ArrayList<String> liveThread = new ArrayList<>();
         LinkedList linkedUrl = new LinkedList();
         HashMap<String, Integer> antiDuplicate = new HashMap<>();
@@ -243,7 +225,6 @@ public class MainJFrame extends javax.swing.JFrame {
         SearchEngine se2 = new SearchEngine(query, "http://www.ask.com/web?q=" , linkedUrl, antiDuplicate);
         se.start();
         se2.start();
-        System.out.println("THREAD STARTED");
 
         try {
             se.join();
@@ -258,21 +239,16 @@ public class MainJFrame extends javax.swing.JFrame {
             if (liveThread.size() <= Integer.parseInt((String) threadCountCombo.getSelectedItem()) && !linkedUrl.isEmpty()) {
 
                 String buffer = (String) linkedUrl.pollFirst();
-                System.out.println("Working on: " + buffer);
 
                 CrawlThread crawlie = new CrawlThread(buffer, urlProcessed, Integer.parseInt((String) crawlCountCombo.getSelectedItem()), linkedUrl, antiDuplicate, liveThread);
 
                 crawlie.start();
-                System.out.println("Current running " + liveThread.size() + " number of threads");
                 
 
-                System.out.println("Beep");
 
             } 
         }
-        System.out.println("COMPLETED YAY");
 
-        System.out.println("Numbers of url collected: " + urlProcessed.size());
 
         for (String s : urlProcessed.keySet()) {
             urlList.add(s);
@@ -316,7 +292,6 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkCrawl;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton crawlButton;
     private javax.swing.JComboBox crawlCountCombo;

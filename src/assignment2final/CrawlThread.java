@@ -55,11 +55,9 @@ public class CrawlThread extends Thread {
             }
 
         }
-        System.out.println("putting "+buffer);
         urlProcessed.put(buffer, source.toString());
-        System.out.println("putted"+buffer);
+      
         if (urlProcessed.size() < pageRequired) {
-            System.out.println("DONE WITH " + urlProcessed.size());
            // String regex ="^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
             // Pattern pattern = Pattern.compile(regex);
             Pattern pattern = Pattern.compile("href=\\\"https?:\\/\\/[a-zA-Z-_]*\\.[a-zA-Z0-9-_]*\\.[a-zA-Z0-9-_]*(/[a-zA-Z0-9\\.\\?=&-_]*)*");
